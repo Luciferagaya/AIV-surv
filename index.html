@@ -278,7 +278,8 @@
   <!-- ============ MAP ============ -->
   <section class="view" id="v-map">
     <p class="hint" style="margin:0 0 10px">Sites with a saved GPS fix. Green = qPCR positive, grey = pending/negative. Needs an internet connection to load the map tiles.</p>
-    <div id="mapEl" style="width:100%;height:60vh;border-radius:12px;overflow:hidden;border:1px solid var(--line)"></div>
+    <div class="btn-row"><button class="btn ghost" id="btnLocateMe">📍 My current location</button></div>
+    <div id="mapEl" style="width:100%;height:56vh;border-radius:12px;overflow:hidden;border:1px solid var(--line)"></div>
   </section>
 </main>
 
@@ -885,6 +886,24 @@
     if(pts.length) mapObj.fitBounds(pts,{padding:[30,30],maxZoom:15});
     setTimeout(function(){ mapObj.invalidateSize(); },80);
   }
+  var meMarker=null, meWatch=null;
+  $("btnLocateMe").addEventListener("click",function(){
+    if(!navigator.geolocation){ toast("Geolocation not supported in this browser",true); return; }
+    var btn=$("btnLocateMe"); btn.disabled=true; btn.textContent="📍 Locating…";
+    navigator.geolocation.getCurrentPosition(function(pos){
+      btn.disabled=false; btn.textContent="📍 My current location";
+      if(!mapObj) renderMap();
+      if(!mapObj) return;
+      var ll=[pos.coords.latitude,pos.coords.longitude];
+      if(meMarker) mapObj.removeLayer(meMarker);
+      meMarker=L.circleMarker(ll,{radius:9,color:"#2266dd",fillColor:"#2266dd",fillOpacity:0.9,weight:3}).addTo(mapObj);
+      meMarker.bindPopup("You are here (±"+Math.round(pos.coords.accuracy)+"m)").openPopup();
+      mapObj.setView(ll,15);
+    },function(err){
+      btn.disabled=false; btn.textContent="📍 My current location";
+      toast("Could not get your location: "+err.message,true);
+    },{enableHighAccuracy:true,timeout:15000,maximumAge:5000});
+  });
 
   /* ---------- nav ---------- */
   function switchView(v){
