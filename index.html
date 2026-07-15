@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<meta name="theme-color" content="#0a2f3d">
-<title>MTB Wastewater Surveillance — Hyderabad</title>
+<meta name="theme-color" content="#0b2545">
+<title>AIV Environmental Surveillance — Telangana</title>
 
 <!-- PWA -->
 <link rel="manifest" href="./manifest.webmanifest">
@@ -14,24 +14,24 @@
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="MTB Survey">
+<meta name="apple-mobile-web-app-title" content="AIV Survey">
 <style>
   :root{
-    --petrol:#0a2f3d; --petrol-2:#0f5a67;
-    --surface:#f4f2ea; --card:#ffffff; --ink:#101c20; --muted:#5c6f74; --line:#dcd8ca;
-    --signal:#17a674; --signal-dim:#e1f4ec; --amber:#d9822b; --amber-dim:#f6ead6; --alert:#b23a3a;
-    --pos:#c0392b; --neg:#17a674; --pend:#8a949a;
+    --petrol:#0b2545; --petrol-2:#1d4e89;
+    --surface:#eef2f8; --card:#ffffff; --ink:#101826; --muted:#5b6b85; --line:#d7dee8;
+    --signal:#0ea5b7; --signal-dim:#e2f6f8; --amber:#d9822b; --amber-dim:#f6ead6; --alert:#b23a3a;
+    --pos:#c0392b; --neg:#0ea5b7; --pend:#8a949a;
     --mono:ui-monospace,"SF Mono",Menlo,Consolas,"Roboto Mono",monospace;
     --ui:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
   }
   *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
   html,body{margin:0;padding:0}
   body{font-family:var(--ui);color:var(--ink);background:var(--surface);padding-bottom:76px;line-height:1.45}
-  header{position:sticky;top:0;z-index:20;background:var(--petrol);color:#eaf3f2;padding:12px 16px;display:flex;align-items:center;gap:10px;box-shadow:0 1px 0 rgba(0,0,0,.15)}
+  header{position:sticky;top:0;z-index:20;background:var(--petrol);color:#e6edf7;padding:12px 16px;display:flex;align-items:center;gap:10px;box-shadow:0 1px 0 rgba(0,0,0,.15)}
   header .mark{width:34px;height:34px;border-radius:9px;flex:0 0 auto;background:linear-gradient(135deg,var(--signal),var(--petrol-2) 65%,var(--petrol));display:grid;place-items:center;box-shadow:0 2px 6px rgba(0,0,0,.25)}
   header .mark svg{width:19px;height:19px;stroke:#fff;fill:none;stroke-width:1.8}
   header h1{font-size:15px;margin:0;font-weight:650;letter-spacing:.2px;line-height:1.1}
-  header .sub{font-size:11px;color:#9fc2c2;font-family:var(--mono);letter-spacing:.5px;text-transform:uppercase}
+  header .sub{font-size:11px;color:#9fb8d9;font-family:var(--mono);letter-spacing:.5px;text-transform:uppercase}
   header .status{margin-left:auto;display:flex;gap:6px;align-items:center;font-family:var(--mono);font-size:11px}
   .dot{width:9px;height:9px;border-radius:50%;background:var(--muted)}
   .dot.ok{background:var(--signal);box-shadow:0 0 0 3px rgba(31,157,107,.2)}
@@ -39,16 +39,16 @@
   main{padding:14px 14px 0}
   .view{display:none}.view.active{display:block;animation:fade .18s ease}
   @keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
-  .instrument{background:var(--petrol);color:#dfeceb;border-radius:14px;padding:14px;margin-bottom:14px;box-shadow:0 6px 18px rgba(11,58,68,.18)}
+  .instrument{background:var(--petrol);color:#dce6f5;border-radius:14px;padding:14px;margin-bottom:14px;box-shadow:0 6px 18px rgba(11,58,68,.18)}
   .instrument .row{display:flex;gap:10px;margin-bottom:10px}
   .readout{flex:1;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.09);border-radius:10px;padding:9px 11px}
-  .readout .lbl{font-size:10px;letter-spacing:.6px;text-transform:uppercase;color:#8fb6b6;font-family:var(--mono)}
-  .readout .val{font-family:var(--mono);font-size:19px;font-weight:600;margin-top:2px;color:#f2fbfa;word-break:break-all}
-  .readout .val small{font-size:11px;color:#9fc2c2;font-weight:400}
+  .readout .lbl{font-size:10px;letter-spacing:.6px;text-transform:uppercase;color:#8fa8cf;font-family:var(--mono)}
+  .readout .val{font-family:var(--mono);font-size:19px;font-weight:600;margin-top:2px;color:#eef4fb;word-break:break-all}
+  .readout .val small{font-size:11px;color:#9fb8d9;font-weight:400}
   .acquire{width:100%;border:0;border-radius:11px;padding:14px;font-size:15px;font-weight:650;background:var(--signal);color:#fff;display:flex;align-items:center;justify-content:center;gap:9px;cursor:pointer;transition:transform .05s,background .2s}
   .acquire:active{transform:scale(.985)}.acquire.busy{background:var(--amber)}.acquire[disabled]{opacity:.6}
-  .weatherline{display:flex;flex-wrap:wrap;gap:8px 16px;margin-top:12px;font-family:var(--mono);font-size:12px;color:#bcdad9}
-  .weatherline b{color:#f2fbfa;font-weight:600}
+  .weatherline{display:flex;flex-wrap:wrap;gap:8px 16px;margin-top:12px;font-family:var(--mono);font-size:12px;color:#b9cdea}
+  .weatherline b{color:#eef4fb;font-weight:600}
   .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px;margin-bottom:14px}
   .card>.head{display:flex;align-items:baseline;gap:8px;margin:-2px 0 12px}
   .card>.head .n{font-family:var(--mono);font-size:11px;color:var(--amber);font-weight:700}
@@ -56,12 +56,12 @@
   .grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.grid.one{grid-template-columns:1fr}
   .field{display:flex;flex-direction:column;gap:5px}.field.span2{grid-column:1/-1}
   label{font-size:12px;color:var(--muted);font-weight:600}
-  input,select,textarea{font:inherit;font-size:16px;padding:11px 12px;border:1px solid var(--line);border-radius:10px;background:#fcfbf7;color:var(--ink);width:100%}
+  input,select,textarea{font:inherit;font-size:16px;padding:11px 12px;border:1px solid var(--line);border-radius:10px;background:#fbfcfe;color:var(--ink);width:100%}
   input:focus,select:focus,textarea:focus{outline:2px solid var(--petrol-2);outline-offset:-1px;border-color:var(--petrol-2)}
-  input[readonly]{background:#eef2ee;color:var(--muted);font-family:var(--mono)}
+  input[readonly]{background:#eef1f7;color:var(--muted);font-family:var(--mono)}
   textarea{resize:vertical;min-height:64px}
   .hint{font-size:11px;color:var(--muted);font-family:var(--mono)}
-  .computed{background:var(--signal-dim);border:1px dashed var(--signal);border-radius:10px;padding:10px 12px;font-family:var(--mono);font-size:14px;color:#155e42}
+  .computed{background:var(--signal-dim);border:1px dashed var(--signal);border-radius:10px;padding:10px 12px;font-family:var(--mono);font-size:14px;color:#0b5566}
   .computed b{font-size:17px}
   .save{width:100%;border:0;border-radius:12px;padding:16px;font-size:16px;font-weight:700;background:var(--petrol);color:#fff;cursor:pointer;margin-bottom:8px}
   .save:active{transform:scale(.99)}
@@ -72,8 +72,8 @@
   .pill{font-size:10.5px;padding:2px 8px;border-radius:20px;font-weight:700;white-space:nowrap}
   .pill.type{background:var(--amber-dim);color:#8a5514}
   .pill.pos{background:#fbe7e4;color:var(--pos)}
-  .pill.neg{background:var(--signal-dim);color:#155e42}
-  .pill.pend{background:#eef1f2;color:var(--pend)}
+  .pill.neg{background:var(--signal-dim);color:#0b5566}
+  .pill.pend{background:#eef2f8;color:var(--pend)}
   .rec .meta{font-family:var(--mono);font-size:11.5px;color:var(--muted);margin-top:6px;display:grid;grid-template-columns:1fr 1fr;gap:2px 12px}
   .rec .meta span b{color:var(--ink);font-weight:600}
   .rec .foot{display:flex;align-items:center;gap:8px;margin-top:9px;font-size:11px;color:var(--muted);font-family:var(--mono)}
@@ -89,8 +89,8 @@
   .btn.primary{background:var(--signal);color:#fff}.btn.ghost{background:var(--card);border:1px solid var(--line);color:var(--petrol)}
   .btn.danger{background:#fbf1f1;border:1px solid #e6c9c9;color:var(--alert)}
   .btn[disabled]{opacity:.55}
-  .statusline{font-family:var(--mono);font-size:12px;padding:10px 12px;border-radius:10px;background:#eef2ee;color:var(--muted);margin-bottom:12px}
-  .statusline.ok{background:var(--signal-dim);color:#155e42}.statusline.err{background:#fbe7e4;color:var(--pos)}
+  .statusline{font-family:var(--mono);font-size:12px;padding:10px 12px;border-radius:10px;background:#eef1f7;color:var(--muted);margin-bottom:12px}
+  .statusline.ok{background:var(--signal-dim);color:#0b5566}.statusline.err{background:#fbe7e4;color:var(--pos)}
   nav{position:fixed;bottom:0;left:0;right:0;z-index:20;background:var(--card);border-top:1px solid var(--line);display:flex;padding:6px 4px calc(6px + env(safe-area-inset-bottom))}
   nav button{flex:1;border:0;background:none;padding:8px 2px;display:flex;flex-direction:column;align-items:center;gap:3px;color:var(--muted);font-size:11px;font-weight:600;cursor:pointer;position:relative}
   nav button svg{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:1.8}
@@ -104,7 +104,7 @@
   @keyframes up{from{transform:translateY(30px);opacity:.6}to{transform:none;opacity:1}}
   .sheet .sh{display:flex;align-items:center;gap:10px;padding:14px 16px;border-bottom:1px solid var(--line);position:sticky;top:0}
   .sheet .sh .id{font-family:var(--mono);font-weight:700;color:var(--petrol);font-size:15px}
-  .sheet .sh .x{margin-left:auto;border:0;background:#e7ebe6;width:32px;height:32px;border-radius:50%;font-size:18px;color:var(--muted);cursor:pointer}
+  .sheet .sh .x{margin-left:auto;border:0;background:#e3e8f0;width:32px;height:32px;border-radius:50%;font-size:18px;color:var(--muted);cursor:pointer}
   .sheet .body{overflow:auto;padding:14px 16px}
   .kv{display:grid;grid-template-columns:auto 1fr;gap:4px 12px;font-size:12.5px;font-family:var(--mono);color:var(--muted);margin-bottom:14px}
   .kv b{color:var(--ink);font-weight:600}
@@ -117,7 +117,7 @@
     body{padding:0;background:#fff}
     #printArea{display:block !important}
     #printArea .poster{font-family:var(--ui);text-align:center;padding:22px;color:#000}
-    #printArea .ptitle{font-size:22px;font-weight:800;color:#0a2f3d;margin-bottom:2px}
+    #printArea .ptitle{font-size:22px;font-weight:800;color:#0b2545;margin-bottom:2px}
     #printArea .psub{font-size:12px;letter-spacing:2px;text-transform:uppercase;color:#5c6f74;margin-bottom:16px}
     #printArea .pqr svg{width:70mm;height:70mm}
     #printArea .psteps{max-width:84mm;margin:14px auto 0;text-align:left;font-size:13px;line-height:1.7}
@@ -128,11 +128,10 @@
 <body>
 
 <header>
-  <div class="mark"><svg viewBox="0 0 24 24"><path d="M12 3s6 7 6 11.5A6 6 0 016 14.5C6 10 12 3 12 3z"/><circle cx="12" cy="15" r="2" fill="#fff" stroke="none"/></svg></div>
-  <div><h1>Wastewater Surveillance</h1><div class="sub">Hyderabad · One Health</div></div>
+  <div class="mark"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="2.4" fill="#fff" stroke="none"/><circle cx="12" cy="12" r="6.5"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3" stroke-linecap="round"/></svg></div>
+  <div><h1>AIV Environmental Surveillance</h1><div class="sub">Telangana · One Health</div></div>
   <div class="status">
-    <span class="dot" id="gpsDot" title="GPS"></span>GPS
-    <span class="dot" id="syncDot" title="Sync" style="margin-left:8px"></span>SYNC
+    <span class="dot" id="syncDot" title="Sync"></span>SYNC
   </div>
 </header>
 
@@ -141,57 +140,40 @@
   <section class="view active" id="v-collect">
     <div class="instrument">
       <div class="row">
-        <div class="readout"><div class="lbl">Latitude</div><div class="val" id="rLat">—</div></div>
-        <div class="readout"><div class="lbl">Longitude</div><div class="val" id="rLng">—</div></div>
+        <div class="readout"><div class="lbl">Selected site</div><div class="val" id="rSite" style="font-size:15px">—</div></div>
+        <div class="readout"><div class="lbl">Co-ordinates</div><div class="val" id="rCoords" style="font-size:14px">—</div></div>
       </div>
-      <div class="row">
-        <div class="readout"><div class="lbl">Accuracy</div><div class="val" id="rAcc">—</div></div>
-        <div class="readout"><div class="lbl">Fix time</div><div class="val" id="rTime" style="font-size:14px">—</div></div>
-      </div>
-      <button class="acquire" id="btnAcquire">◎ Capture location &amp; weather</button>
+      <button class="acquire" id="btnDetectSite" style="margin-bottom:9px">📍 Detect my site (GPS)</button>
+      <button class="acquire" id="btnAcquire">☁ Fetch weather for this site</button>
       <div class="weatherline" id="weatherLine" style="display:none"></div>
     </div>
 
     <div class="card">
       <div class="head"><span class="n">01</span><h2>Sample identity</h2></div>
       <div class="grid">
-        <div class="field span2"><label for="sampleId">Sample ID</label><input id="sampleId" type="text" autocomplete="off"></div>
-        <div class="field"><label for="siteName">Site name / code</label><input id="siteName" type="text" placeholder="e.g. Nala Kunta STP" autocomplete="off"></div>
-        <div class="field"><label for="siteType">Site type</label>
-          <select id="siteType">
-            <option value="STP inlet">STP — inlet</option><option value="STP outlet">STP — outlet</option>
-            <option value="Pumping station">Pumping station</option><option value="Open drain / nala">Open drain / nala</option>
-            <option value="Manhole">Manhole</option><option value="Hospital effluent">Hospital effluent</option>
-            <option value="Community drain">Community drain</option><option value="Other">Other</option>
+        <div class="field"><label for="siteSelect">Location</label>
+          <select id="siteSelect"><option value="">— Select site —</option></select>
+          <div id="autoDetectNote" class="hint" style="margin-top:2px"></div>
+        </div>
+        <div class="field"><label for="habitat">Location habitat</label><input id="habitat" type="text" readonly></div>
+        <div class="field span2"><label for="coords">Location co-ordinates</label><input id="coords" type="text" readonly></div>
+        <div class="field"><label for="collDate">Date of collection</label><input id="collDate" type="date"></div>
+        <div class="field"><label for="sampleType">Type of sample</label>
+          <select id="sampleType">
+            <option>Fecal</option><option>Water</option><option>Chopping board swab</option>
+            <option>Cage swab</option><option>Air</option><option>Oral swab</option>
           </select>
         </div>
-        <div class="field"><label for="zone">GHMC zone / ward</label><input id="zone" type="text" placeholder="Zone · Circle · Ward" autocomplete="off"></div>
-        <div class="field"><label for="pop">Catchment population</label><input id="pop" type="number" inputmode="numeric" placeholder="persons served"></div>
+        <div class="field"><label for="numSamples">No. of samples</label><input id="numSamples" type="number" inputmode="numeric" min="1" value="1"></div>
+        <div class="field"><label for="sampleId">Sample ID</label><input id="sampleId" type="text" autocomplete="off"></div>
       </div>
     </div>
 
     <div class="card">
-      <div class="head"><span class="n">02</span><h2>Wastewater parameters</h2></div>
+      <div class="head"><span class="n">02</span><h2>Collection</h2></div>
       <div class="grid">
-        <div class="field"><label for="flowSpeed">Flow speed (m/s)</label><input id="flowSpeed" type="number" step="0.01" inputmode="decimal" placeholder="0.00"></div>
-        <div class="field"><label for="flowDepth">Flow depth (cm)</label><input id="flowDepth" type="number" step="0.1" inputmode="decimal" placeholder="0.0"></div>
-        <div class="field"><label for="channelW">Channel width (cm)</label><input id="channelW" type="number" step="0.1" inputmode="decimal" placeholder="0.0"></div>
-        <div class="field"><label for="waterTemp">Water temp (°C)</label><input id="waterTemp" type="number" step="0.1" inputmode="decimal" placeholder="0.0"></div>
-        <div class="field"><label for="ph">pH</label><input id="ph" type="number" step="0.1" inputmode="decimal" placeholder="7.0"></div>
-        <div class="field"><label for="turbidity">Turbidity (NTU)</label><input id="turbidity" type="number" step="0.1" inputmode="decimal" placeholder="0.0"></div>
-        <div class="field span2" id="flowBox" style="display:none"><div class="computed">Estimated flow rate: <b id="flowRate">—</b> L/s &nbsp;·&nbsp; <span id="flowRateM">—</span> m³/day</div></div>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="head"><span class="n">03</span><h2>Collection</h2></div>
-      <div class="grid">
-        <div class="field"><label for="method">Method</label>
-          <select id="method"><option>Grab</option><option>Composite (time)</option><option>Composite (flow)</option><option>Passive (Moore swab)</option></select>
-        </div>
-        <div class="field"><label for="volume">Volume (mL)</label><input id="volume" type="number" inputmode="numeric" placeholder="mL"></div>
         <div class="field span2"><label for="collector">Collector</label><input id="collector" type="text" placeholder="Name / initials" autocomplete="off"></div>
-        <div class="field span2"><label for="notes">Field notes</label><textarea id="notes" placeholder="Rainfall in last 24h, odour, colour, obstructions, chain-of-custody…"></textarea></div>
+        <div class="field span2"><label for="notes">Field notes</label><textarea id="notes" placeholder="Observations, weather, animal density, chain-of-custody…"></textarea></div>
         <div class="field span2">
           <label>Site photo (optional)</label>
           <div class="btn-row" style="margin:0">
@@ -225,10 +207,9 @@
       <div class="btn-row" style="margin:0"><button class="btn primary" id="btnCsvReminder">Export CSV now</button></div>
     </div>
     <div class="stats">
-      <div class="stat"><div class="v" id="stTotal">0</div><div class="k">Samples</div></div>
-      <div class="stat"><div class="v" id="stPos">0</div><div class="k">qPCR positive</div></div>
+      <div class="stat"><div class="v" id="stTotal">0</div><div class="k">Records</div></div>
+      <div class="stat"><div class="v" id="stSamples">0</div><div class="k">Total samples</div></div>
       <div class="stat"><div class="v" id="stSites">0</div><div class="k">Distinct sites</div></div>
-      <div class="stat"><div class="v" id="stPop">0</div><div class="k">Pop. covered</div></div>
     </div>
     <div class="card">
       <div class="head"><span class="n">↧</span><h2>Export &amp; backup</h2></div>
@@ -277,46 +258,28 @@
 
   <!-- ============ MAP ============ -->
   <section class="view" id="v-map">
-    <p class="hint" style="margin:0 0 10px">Sites with a saved GPS fix. Green = qPCR positive, grey = pending/negative. Needs an internet connection to load the map tiles.</p>
+    <p class="hint" style="margin:0 0 10px">Your 11 fixed sites, colored by habitat type. Marker size shows whether samples have been logged there. Needs an internet connection to load the map tiles.</p>
     <div class="btn-row"><button class="btn ghost" id="btnLocateMe">📍 My current location</button></div>
     <div id="mapEl" style="width:100%;height:56vh;border-radius:12px;overflow:hidden;border:1px solid var(--line)"></div>
   </section>
 </main>
 
 <nav>
-  <button class="active" data-view="collect" id="navCollect"><svg viewBox="0 0 24 24"><path d="M12 3s6.5 7.3 6.5 11.7A6.5 6.5 0 015.5 14.7C5.5 10.3 12 3 12 3z"/></svg>Collect</button>
+  <button class="active" data-view="collect" id="navCollect"><svg viewBox="0 0 24 24"><path d="M12 21s-7-6.3-7-11a7 7 0 0114 0c0 4.7-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>Collect</button>
   <button data-view="records" id="navRecords"><span class="count" id="navCount"></span><svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="3"/><path d="M8 9.5h8M8 13h8M8 16.5h5"/></svg>Records</button>
   <button data-view="export" id="navExport"><svg viewBox="0 0 24 24"><path d="M12 3v12m0 0l-4-4m4 4l4-4"/><path d="M4 21h16"/></svg>Export</button>
   <button data-view="sync" id="navSync"><svg viewBox="0 0 24 24"><path d="M4 12a8 8 0 0113.9-5.4M20 12a8 8 0 01-13.9 5.4"/><path d="M17.5 3v4.5H13M6.5 21v-4.5H11"/></svg>Sync</button>
   <button data-view="map" id="navMap"><svg viewBox="0 0 24 24"><path d="M9 4l6 3 6-3v13l-6 3-6-3-6 3V7l6-3z"/><path d="M9 4v13M15 7v13"/></svg>Map</button>
 </nav>
 
-<!-- record detail / lab-results modal -->
+<!-- record detail modal -->
 <div class="modal" id="detail" style="display:none">
   <div class="sheet">
     <div class="sh"><span class="id" id="dTitle">—</span><button class="x" id="dClose">×</button></div>
     <div class="body">
       <div class="kv" id="dInfo"></div>
-      <div class="card" style="margin:0">
-        <div class="head"><span class="n">🧪</span><h2>Lab results — MTB qPCR</h2></div>
-        <div class="grid">
-          <div class="field span2"><label for="dLabId">Lab / accession ID</label><input id="dLabId" type="text" autocomplete="off"></div>
-          <div class="field"><label for="dTarget">Target gene</label>
-            <select id="dTarget"><option value="">—</option><option>IS6110</option><option>rpoB</option><option>hspX</option><option>16S rRNA</option><option>Other</option></select>
-          </div>
-          <div class="field"><label for="dResult">Result</label>
-            <select id="dResult"><option value="">Pending / not tested</option><option>Positive</option><option>Negative</option><option>Inconclusive</option></select>
-          </div>
-          <div class="field span2 ctwrap"><label for="dCt">qPCR Ct value</label><input id="dCt" type="number" step="0.01" inputmode="decimal" placeholder="e.g. 32.4">
-            <div class="ctnote" id="dCtNote">Lower Ct = higher target load. Leave blank if undetermined.</div>
-          </div>
-          <div class="field"><label for="dLabDate">Date analysed</label><input id="dLabDate" type="date"></div>
-          <div class="field"><label for="dAnalyst">Analyst</label><input id="dAnalyst" type="text" autocomplete="off"></div>
-          <div class="field span2"><label for="dLabNotes">Lab notes</label><textarea id="dLabNotes" placeholder="Assay, kit, replicates, inhibition, internal control Ct…"></textarea></div>
-        </div>
-      </div>
     </div>
-    <div class="foot"><button class="btn danger" id="dDelete" style="flex:0 0 auto">Delete</button><button class="btn primary" id="dSave">Save lab result</button></div>
+    <div class="foot"><button class="btn danger" id="dDelete" style="flex:0 0 auto">Delete</button></div>
   </div>
 </div>
 
@@ -403,81 +366,85 @@
     $("cfgUrl").value=config.url||""; $("cfgKey").value=config.key||""; $("cfgAuto").checked=config.auto!==false;
     $("cfgCollector").value=config.collector||""; if(config.collector) $("collector").value=config.collector;
     suggestId(); renderRecords(); renderStats(); renderSync(); renderCsvReminder();
-    if(!navigator.geolocation) setDot("gpsDot","warn");
-    else if(!(window.isSecureContext===true || location.protocol==="https:" || location.hostname==="localhost" || location.hostname==="127.0.0.1")) setDot("gpsDot","warn");
     maybePromptSetup();
+    autoTried=true; detectSite(true);
   })();
+
+  var SITES=[
+    {name:"Mughal Ka Nala", habitat:"Sewage", lat:17.3763, lng:78.4335},
+    {name:"Bahadur Pura Nala", habitat:"Sewage", lat:17.36662, lng:78.4575},
+    {name:"Peerzadiguda Nala", habitat:"Sewage", lat:17.388613, lng:78.603149},
+    {name:"Bodupal Nala", habitat:"Sewage", lat:17.402136, lng:78.581210},
+    {name:"Pocharam Nala", habitat:"Sewage", lat:17.420878, lng:78.652762},
+    {name:"Kistareddypet Lake", habitat:"Lake", lat:17.548630, lng:78.305790},
+    {name:"Duck Pond (left)", habitat:"Zoo", lat:17.352450, lng:78.446900},
+    {name:"Nampally Bird Market", habitat:"LBM", lat:17.391897, lng:78.464748},
+    {name:"Sitharam Raju (P2)", habitat:"Poultry", lat:17.47001, lng:78.76717},
+    {name:"Pocharam", habitat:"WLS", lat:18.120717, lng:78.193945},
+    {name:"Manjeera WLS", habitat:"WLS", lat:17.656388, lng:78.066388}
+  ];
+  (function populateSites(){
+    var sel=$("siteSelect");
+    SITES.forEach(function(s,i){ var o=document.createElement("option"); o.value=i; o.textContent=s.name; sel.appendChild(o); });
+  })();
+  $("siteSelect").addEventListener("change",function(){
+    var i=this.value;
+    if(i===""){ $("habitat").value=""; $("coords").value=""; $("rSite").textContent="—"; $("rCoords").textContent="—"; lastFix=null; lastWeather=null; $("weatherLine").style.display="none"; $("autoDetectNote").textContent=""; return; }
+    var s=SITES[i];
+    $("habitat").value=s.habitat;
+    $("coords").value=s.lat.toFixed(6)+", "+s.lng.toFixed(6);
+    $("rSite").textContent=s.name; $("rCoords").textContent=s.lat.toFixed(6)+", "+s.lng.toFixed(6);
+    lastFix={lat:s.lat,lng:s.lng};
+    lastWeather=null; $("weatherLine").style.display="none";
+    suggestId();
+  });
+
+  function haversineM(lat1,lng1,lat2,lng2){
+    var R=6371000, toRad=function(d){return d*Math.PI/180;};
+    var dLat=toRad(lat2-lat1), dLng=toRad(lng2-lng1);
+    var a=Math.sin(dLat/2)*Math.sin(dLat/2)+Math.cos(toRad(lat1))*Math.cos(toRad(lat2))*Math.sin(dLng/2)*Math.sin(dLng/2);
+    return R*2*Math.atan2(Math.sqrt(a),Math.sqrt(1-a));
+  }
+  var autoTried=false;
+  function detectSite(silent){
+    if(!navigator.geolocation){ if(!silent) toast("Geolocation not supported in this browser",true); return; }
+    var note=$("autoDetectNote"); var btn=$("btnDetectSite");
+    if(!silent){ btn.classList.add("busy"); btn.disabled=true; btn.textContent="📍 Locating…"; }
+    navigator.geolocation.getCurrentPosition(function(pos){
+      if(!silent){ btn.classList.remove("busy"); btn.disabled=false; btn.textContent="📍 Detect my site (GPS)"; }
+      var lat=pos.coords.latitude, lng=pos.coords.longitude;
+      var best=null, bestD=Infinity;
+      SITES.forEach(function(s,i){ var d=haversineM(lat,lng,s.lat,s.lng); if(d<bestD){ bestD=d; best={i:i,s:s}; } });
+      if(best && bestD<=500){
+        $("siteSelect").value=best.i;
+        $("siteSelect").dispatchEvent(new Event("change"));
+        note.style.color=""; note.textContent="Auto-selected — you're "+Math.round(bestD)+"m from "+best.s.name+". Wrong? Pick a different site above.";
+        if(!silent) toast("Auto-selected "+best.s.name);
+      } else if(!silent){
+        note.style.color="var(--amber)";
+        note.textContent=best?("No fixed site within 500m — nearest is "+best.s.name+" ("+(bestD/1000).toFixed(2)+"km away). Select manually."):"No fixed site found nearby. Select manually.";
+        toast("No site within 500m — select manually",true);
+      }
+    },function(err){
+      if(!silent){ btn.classList.remove("busy"); btn.disabled=false; btn.textContent="📍 Detect my site (GPS)"; toast("Could not get GPS position: "+err.message,true); }
+    },{enableHighAccuracy:true,timeout:15000,maximumAge:10000});
+  }
+  $("btnDetectSite").addEventListener("click",function(){ detectSite(false); });
 
   function suggestId(){
     var t=todayStamp();
-    var n=records.filter(function(r){return (r.sampleId||"").indexOf("MTB-"+t)===0;}).length;
-    $("sampleId").value="MTB-"+t+"-"+pad(n+1);
+    var i=$("siteSelect").value, code=(i!==""?SITES[i].name.replace(/[^A-Za-z0-9]+/g,"").slice(0,6).toUpperCase():"AIV");
+    var n=records.filter(function(r){return (r.sampleId||"").indexOf(code+"-"+t)===0;}).length;
+    $("sampleId").value=code+"-"+t+"-"+pad(n+1);
   }
 
-  /* ---------- GPS + weather ---------- */
-  function isSecureContext(){
-    return window.isSecureContext===true || location.protocol==="https:" || location.hostname==="localhost" || location.hostname==="127.0.0.1";
-  }
+  /* ---------- weather (for the selected fixed site) ---------- */
   $("btnAcquire").addEventListener("click",function(){
-    if(!navigator.geolocation){ toast("Geolocation not supported in this browser",true); return; }
-    if(!isSecureContext()){
-      toast("GPS needs HTTPS — open this app via its https:// GitHub Pages link, not a local file",true);
-      setDot("gpsDot","warn");
-      return;
-    }
-    var btn=this; btn.classList.add("busy"); btn.disabled=true; btn.textContent="◎ Acquiring GPS fix…";
-    var timedOut=false;
-    var fallbackTimer=setTimeout(function(){
-      timedOut=true;
-      btn.classList.remove("busy"); btn.disabled=false; btn.textContent="◎ Capture location & weather";
-      setDot("gpsDot","warn");
-      toast("GPS taking too long — check location permission/signal, or enter coordinates manually",true);
-      openManualFix();
-    },20000);
-    navigator.geolocation.getCurrentPosition(function(pos){
-      if(timedOut) return;
-      clearTimeout(fallbackTimer);
-      var c=pos.coords;
-      lastFix={lat:c.latitude,lng:c.longitude,acc:c.accuracy,alt:c.altitude,ts:new Date(pos.timestamp).toISOString()};
-      $("rLat").textContent=c.latitude.toFixed(6); $("rLng").textContent=c.longitude.toFixed(6);
-      $("rAcc").innerHTML=Math.round(c.accuracy)+' <small>m</small>';
-      $("rTime").textContent=new Date(pos.timestamp).toLocaleTimeString([], {hour:'2-digit',minute:'2-digit',second:'2-digit'});
-      setDot("gpsDot","ok"); fetchWeather(c.latitude,c.longitude,btn);
-    },function(err){
-      if(timedOut) return;
-      clearTimeout(fallbackTimer);
-      btn.classList.remove("busy"); btn.disabled=false; btn.textContent="◎ Capture location & weather";
-      setDot("gpsDot","warn");
-      var msg;
-      switch(err.code){
-        case err.PERMISSION_DENIED: msg="Location permission denied — enable it for this site in your browser/site settings, then retry"; break;
-        case err.POSITION_UNAVAILABLE: msg="Position unavailable — move outdoors or near a window and retry"; break;
-        case err.TIMEOUT: msg="GPS timed out — retry, or enter coordinates manually"; break;
-        default: msg="GPS error: "+err.message;
-      }
-      toast(msg,true);
-      if(err.code===err.POSITION_UNAVAILABLE || err.code===err.TIMEOUT) openManualFix();
-    },{enableHighAccuracy:true,timeout:15000,maximumAge:0});
+    if(!lastFix){ toast("Select a site first",true); return; }
+    var btn=this; btn.classList.add("busy"); btn.disabled=true; btn.textContent="☁ Fetching weather…";
+    fetchWeather(lastFix.lat,lastFix.lng,btn);
   });
-  function openManualFix(){
-    var lat=prompt("GPS unavailable. Enter latitude manually (e.g. 17.412300):");
-    if(lat===null) return;
-    var lng=prompt("Enter longitude manually (e.g. 78.449500):");
-    if(lng===null) return;
-    lat=parseFloat(lat); lng=parseFloat(lng);
-    if(isNaN(lat)||isNaN(lng)){ toast("Invalid coordinates entered",true); return; }
-    lastFix={lat:lat,lng:lng,acc:null,alt:null,ts:new Date().toISOString()};
-    $("rLat").textContent=lat.toFixed(6); $("rLng").textContent=lng.toFixed(6);
-    $("rAcc").innerHTML='manual <small>entry</small>';
-    $("rTime").textContent=new Date().toLocaleTimeString([], {hour:'2-digit',minute:'2-digit',second:'2-digit'});
-    setDot("gpsDot","ok");
-    var btn=$("btnAcquire");
-    btn.classList.add("busy"); btn.disabled=true; btn.textContent="◎ Fetching weather…";
-    fetchWeather(lat,lng,btn);
-    toast("Manual coordinates saved");
-  }
   function fetchWeather(lat,lng,btn){
-    btn.textContent="◎ Fetching weather…";
     var url="https://api.open-meteo.com/v1/forecast?latitude="+lat+"&longitude="+lng+"&current=temperature_2m,relative_humidity_2m,precipitation,wind_speed_10m&timezone=auto";
     fetch(url).then(function(r){return r.json();}).then(function(d){
       var c=d.current||{};
@@ -485,17 +452,11 @@
       var wl=$("weatherLine"); wl.style.display="flex";
       wl.innerHTML='<span>Air <b>'+fmt(c.temperature_2m,'°C')+'</b></span><span>RH <b>'+fmt(c.relative_humidity_2m,'%')+'</b></span><span>Rain <b>'+fmt(c.precipitation,'mm')+'</b></span><span>Wind <b>'+fmt(c.wind_speed_10m,'km/h')+'</b></span>';
       done();
-    }).catch(function(){ lastWeather=null; var wl=$("weatherLine"); wl.style.display="flex"; wl.innerHTML='Weather unavailable — GPS captured. Note conditions manually if needed.'; done(); });
-    function done(){ btn.classList.remove("busy"); btn.disabled=false; btn.textContent="◎ Re-capture location & weather"; toast("Location captured"); }
+    }).catch(function(){ lastWeather=null; var wl=$("weatherLine"); wl.style.display="flex"; wl.innerHTML='Weather unavailable — note conditions manually if needed.'; done(); });
+    function done(){ btn.classList.remove("busy"); btn.disabled=false; btn.textContent="☁ Refresh weather for this site"; }
   }
   function fmt(v,u){ return (v===undefined||v===null)?"—":(v+(u||"")); }
 
-  ["flowSpeed","flowDepth","channelW"].forEach(function(id){ $(id).addEventListener("input",computeFlow); });
-  function computeFlow(){
-    var v=parseFloat($("flowSpeed").value), d=parseFloat($("flowDepth").value), w=parseFloat($("channelW").value);
-    if(v>0&&d>0&&w>0){ var q=v*(d/100)*(w/100); $("flowBox").style.display="block"; $("flowRate").textContent=(q*1000).toFixed(1); $("flowRateM").textContent=Math.round(q*86400).toLocaleString(); }
-    else $("flowBox").style.display="none";
-  }
   function numOrNull(x){ x=parseFloat(x); return isNaN(x)?null:x; }
 
   /* ---------- photo attachment (compressed to keep local storage small) ---------- */
@@ -565,114 +526,103 @@
 
   /* ---------- save new sample ---------- */
   $("btnSave").addEventListener("click",async function(){
+    var siteIdx=$("siteSelect").value;
+    if(siteIdx===""){ toast("Select a site",true); return; }
     var id=$("sampleId").value.trim();
     if(!id){ toast("Sample ID is required",true); return; }
-    if(!lastFix){ toast("Capture a GPS fix before saving",true); switchView("collect"); return; }
+    var dateVal=$("collDate").value;
+    if(!dateVal){ toast("Date of collection is required",true); return; }
     var dupe=records.find(function(r){ return (r.sampleId||"").toLowerCase()===id.toLowerCase(); });
     if(dupe){
       var when=new Date(dupe.savedAt).toLocaleString([], {day:'2-digit',month:'short',hour:'2-digit',minute:'2-digit'});
-      var ok=confirm("Sample ID \""+id+"\" already exists (saved "+when+", site: "+(dupe.siteName||"—")+"). Save anyway as a duplicate? Tap Cancel to go back and change the ID.");
+      var ok=confirm("Sample ID \""+id+"\" already exists (saved "+when+", site: "+(dupe.location||"—")+"). Save anyway as a duplicate? Tap Cancel to go back and change the ID.");
       if(!ok) return;
     }
-    var v=parseFloat($("flowSpeed").value), d=parseFloat($("flowDepth").value), w=parseFloat($("channelW").value);
+    var s=SITES[siteIdx];
+    var dt=new Date(dateVal+"T00:00:00");
+    var monthNames=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+    var monthName=monthNames[dt.getMonth()], year=dt.getFullYear();
     var now=new Date().toISOString();
     var rec={
       id:uuid(), sampleId:id, savedAt:now, updatedAt:now, syncedAt:null, deviceId:deviceId,
-      siteName:$("siteName").value.trim(), siteType:$("siteType").value, zone:$("zone").value.trim(), population:numOrNull($("pop").value),
-      lat:lastFix.lat, lng:lastFix.lng, gpsAccuracy:lastFix.acc, altitude:lastFix.alt, fixTime:lastFix.ts,
+      collectionDate:dateVal, collectionMonth:monthName, collectionYear:year, monthYear1:monthName+"-"+year, monthYear:(dt.getMonth()+1)+"-"+year,
+      location:s.name, habitat:s.habitat, lat:s.lat, lng:s.lng,
+      sampleType:$("sampleType").value, numSamples:numOrNull($("numSamples").value)||1,
       airTemp:lastWeather?lastWeather.airTemp:null, humidity:lastWeather?lastWeather.humidity:null, precip:lastWeather?lastWeather.precip:null, windSpeed:lastWeather?lastWeather.wind:null,
-      flowSpeed:numOrNull($("flowSpeed").value), flowDepth:numOrNull($("flowDepth").value), channelWidth:numOrNull($("channelW").value),
-      flowRateLps:(v>0&&d>0&&w>0)?+(v*(d/100)*(w/100)*1000).toFixed(2):null,
-      waterTemp:numOrNull($("waterTemp").value), pH:numOrNull($("ph").value), turbidity:numOrNull($("turbidity").value),
-      method:$("method").value, volume:numOrNull($("volume").value), collector:$("collector").value.trim(), notes:$("notes").value.trim(),
-      photo:pendingPhoto||null,
-      labSampleId:"", qpcrTarget:"", qpcrCt:null, qpcrResult:"", labDate:"", analyst:"", labNotes:""
+      collector:$("collector").value.trim(), notes:$("notes").value.trim(),
+      photo:pendingPhoto||null
     };
     records.unshift(rec); await setJSON("mtb-samples",records);
     toast("Saved "+id); resetForm(); renderRecords(); renderStats(); renderSync(); renderCsvReminder();
     if(config.auto!==false && config.url && config.key && navigator.onLine){ syncPush([rec]).then(function(ok){ if(ok){renderRecords();renderStats();renderSync();} }); }
   });
   function resetForm(){
-    ["siteName","zone","pop","flowSpeed","flowDepth","channelW","waterTemp","ph","turbidity","volume","notes"].forEach(function(id){$(id).value="";});
-    $("flowBox").style.display="none"; lastFix=null; lastWeather=null;
-    $("rLat").textContent="—";$("rLng").textContent="—";$("rAcc").textContent="—";$("rTime").textContent="—";
-    $("weatherLine").style.display="none"; $("btnAcquire").textContent="◎ Capture location & weather"; suggestId();
+    ["notes","collDate"].forEach(function(id){$(id).value="";});
+    $("numSamples").value="1"; $("siteSelect").value=""; $("habitat").value=""; $("coords").value="";
+    lastFix=null; lastWeather=null;
+    $("rSite").textContent="—"; $("rCoords").textContent="—";
+    $("weatherLine").style.display="none"; $("btnAcquire").textContent="☁ Fetch weather for this site"; suggestId();
     pendingPhoto=null; $("photoPreview").style.display="none"; $("photoImg").src="";
   }
 
   /* ---------- records list ---------- */
   function esc(s){ return (s==null?"":String(s)).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];}); }
-  function resultPill(r){
-    if(r.qpcrResult==="Positive") return '<span class="pill pos">POS'+(r.qpcrCt!=null?' · Ct '+r.qpcrCt:'')+'</span>';
-    if(r.qpcrResult==="Negative") return '<span class="pill neg">NEG</span>';
-    if(r.qpcrResult==="Inconclusive") return '<span class="pill pend">INCONC</span>';
-    return '<span class="pill pend">qPCR pending</span>';
-  }
   function renderRecords(){
     var el=$("recList");
-    if(!records.length){ el.innerHTML='<div class="empty"><div class="big">◎</div><p><b>No samples yet</b></p><p>Capture a GPS fix on the Collect tab to log your first wastewater sample.</p></div>'; return; }
+    if(!records.length){ el.innerHTML='<div class="empty"><div class="big">◎</div><p><b>No samples yet</b></p><p>Select a site on the Collect tab to log your first sample.</p></div>'; return; }
     el.innerHTML=records.map(function(r){
       var when=new Date(r.savedAt).toLocaleString([], {day:'2-digit',month:'short',hour:'2-digit',minute:'2-digit'});
       var synced=r.syncedAt && (!r.updatedAt || r.syncedAt>=r.updatedAt);
       return '<div class="rec" data-id="'+r.id+'">'+
-        '<div class="top"><span class="id">'+esc(r.sampleId)+'</span><span class="badges"><span class="pill type">'+esc(r.siteType)+'</span>'+resultPill(r)+'</span></div>'+
+        '<div class="top"><span class="id">'+esc(r.sampleId)+'</span><span class="badges"><span class="pill type">'+esc(r.sampleType)+'</span></span></div>'+
         '<div class="meta">'+
-          '<span><b>'+esc(r.siteName||'—')+'</b></span><span>'+when+'</span>'+
+          '<span><b>'+esc(r.location||'—')+'</b> · '+esc(r.habitat||'')+'</span><span>'+when+'</span>'+
           '<span>'+r.lat.toFixed(5)+', '+r.lng.toFixed(5)+'</span>'+
-          '<span>±'+Math.round(r.gpsAccuracy)+'m'+(r.flowRateLps?' · '+r.flowRateLps+' L/s':'')+'</span>'+
+          '<span>'+(r.collectionDate||'—')+(r.numSamples>1?' · x'+r.numSamples:'')+'</span>'+
         '</div>'+
-        '<div class="foot"><span class="syncdot '+(synced?'done':'pending')+'"></span>'+(synced?'synced':'not synced')+' · tap to add lab result</div>'+
+        '<div class="foot"><span class="syncdot '+(synced?'done':'pending')+'"></span>'+(synced?'synced':'not synced')+' · tap for details</div>'+
       '</div>';
     }).join("");
     Array.prototype.forEach.call(el.querySelectorAll(".rec"),function(c){ c.addEventListener("click",function(){ openDetail(this.getAttribute("data-id")); }); });
   }
 
-  /* ---------- detail / lab modal ---------- */
+  /* ---------- detail modal ---------- */
   function recById(id){ for(var i=0;i<records.length;i++) if(records[i].id===id) return records[i]; return null; }
   function openDetail(id){
     var r=recById(id); if(!r) return; openId=id;
     $("dTitle").textContent=r.sampleId;
     var maps="https://www.google.com/maps?q="+r.lat+","+r.lng;
     $("dInfo").innerHTML=
-      row("Site",esc(r.siteName||'—')+' · '+esc(r.siteType))+
-      row("Ward",esc(r.zone||'—'))+
-      row("Coords",'<a href="'+maps+'" target="_blank" rel="noopener">'+r.lat.toFixed(5)+', '+r.lng.toFixed(5)+'</a> (±'+Math.round(r.gpsAccuracy)+'m)')+
-      row("Collected",new Date(r.savedAt).toLocaleString())+
-      row("Population",r.population?Number(r.population).toLocaleString():'—')+
-      row("Flow",r.flowRateLps!=null?(r.flowRateLps+' L/s'):'—')+
+      row("Location",esc(r.location||'—')+' · '+esc(r.habitat||''))+
+      row("Coords",'<a href="'+maps+'" target="_blank" rel="noopener">'+r.lat.toFixed(5)+', '+r.lng.toFixed(5)+'</a>')+
+      row("Date of collection",r.collectionDate||'—')+
+      row("Month-Year",r.monthYear1||'—')+
+      row("Sample type",esc(r.sampleType||'—')+(r.numSamples?' · x'+r.numSamples:''))+
+      row("Collector",esc(r.collector||'—'))+
       row("Weather",(r.airTemp!=null?r.airTemp+'°C':'—')+(r.humidity!=null?' · '+r.humidity+'% RH':''))+
-      row("Method",esc(r.method||'—')+(r.volume?' · '+r.volume+' mL':''));
+      row("Notes",esc(r.notes||'—'))+
+      row("Saved",new Date(r.savedAt).toLocaleString());
     if(r.photo){ $("dInfo").innerHTML+='<b>Photo</b><span><img src="'+r.photo+'" style="max-width:100%;border-radius:8px;margin-top:2px" alt="Site photo"></span>'; }
-    $("dLabId").value=r.labSampleId||""; $("dTarget").value=r.qpcrTarget||""; $("dCt").value=r.qpcrCt!=null?r.qpcrCt:"";
-    $("dResult").value=r.qpcrResult||""; $("dLabDate").value=r.labDate||""; $("dAnalyst").value=r.analyst||""; $("dLabNotes").value=r.labNotes||"";
     $("detail").style.display="flex";
   }
   function row(k,v){ return '<b>'+k+'</b><span>'+v+'</span>'; }
   function closeDetail(){ $("detail").style.display="none"; openId=null; }
   $("dClose").addEventListener("click",closeDetail);
   $("detail").addEventListener("click",function(e){ if(e.target===this) closeDetail(); });
-  $("dSave").addEventListener("click",async function(){
-    var r=recById(openId); if(!r) return;
-    r.labSampleId=$("dLabId").value.trim(); r.qpcrTarget=$("dTarget").value; r.qpcrCt=numOrNull($("dCt").value);
-    r.qpcrResult=$("dResult").value; r.labDate=$("dLabDate").value||""; r.analyst=$("dAnalyst").value.trim(); r.labNotes=$("dLabNotes").value.trim();
-    r.updatedAt=new Date().toISOString(); r.syncedAt=null;
-    await setJSON("mtb-samples",records); closeDetail(); renderRecords(); renderStats(); renderSync(); toast("Lab result saved");
-    if(config.auto!==false && config.url && config.key && navigator.onLine){ syncPush([r]).then(function(ok){ if(ok){renderRecords();renderStats();renderSync();} }); }
-  });
   $("dDelete").addEventListener("click",async function(){
     var r=recById(openId); if(!r) return;
     if(!confirm("Delete "+r.sampleId+" from this device? (This does not delete it from the cloud.)")) return;
     records=records.filter(function(x){return x.id!==openId;}); await setJSON("mtb-samples",records);
-    closeDetail(); renderRecords(); renderStats(); renderSync(); toast("Deleted locally");
+    closeDetail(); renderRecords(); renderStats(); renderSync(); renderCsvReminder(); toast("Deleted locally");
   });
 
   /* ---------- stats ---------- */
   function renderStats(){
     $("stTotal").textContent=records.length;
-    var sites={},pop=0,pos=0;
-    records.forEach(function(r){ if(r.siteName) sites[r.siteName.toLowerCase()]=1; if(r.population) pop+=Number(r.population); if(r.qpcrResult==="Positive") pos++; });
-    $("stPos").textContent=pos; $("stSites").textContent=Object.keys(sites).length;
-    $("stPop").textContent=pop>=1000?(pop/1000).toFixed(pop>=100000?0:1)+"k":pop;
+    var sites={},totalSamples=0;
+    records.forEach(function(r){ if(r.location) sites[r.location.toLowerCase()]=1; totalSamples+=Number(r.numSamples)||1; });
+    $("stSites").textContent=Object.keys(sites).length;
+    $("stSamples").textContent=totalSamples;
     var pending=records.filter(isPending).length;
     var nc=$("navCount"); if(pending>0){ nc.textContent=pending; nc.style.display="flex"; } else nc.style.display="none";
   }
@@ -680,22 +630,21 @@
 
   /* ---------- CSV / JSON ---------- */
   var COLS=[
-    ["sampleId","Sample_ID"],["savedAt","Saved_At"],["fixTime","GPS_Fix_Time"],
-    ["siteName","Site_Name"],["siteType","Site_Type"],["zone","Zone_Ward"],["population","Catchment_Population"],
-    ["lat","Latitude"],["lng","Longitude"],["gpsAccuracy","GPS_Accuracy_m"],["altitude","Altitude_m"],
-    ["airTemp","Air_Temp_C"],["humidity","Humidity_pct"],["precip","Precip_mm"],["windSpeed","Wind_kmh"],
-    ["flowSpeed","Flow_Speed_ms"],["flowDepth","Flow_Depth_cm"],["channelWidth","Channel_Width_cm"],["flowRateLps","Flow_Rate_Lps"],
-    ["waterTemp","Water_Temp_C"],["pH","pH"],["turbidity","Turbidity_NTU"],
-    ["method","Method"],["volume","Volume_mL"],["collector","Collector"],["notes","Notes"],
-    ["labSampleId","Lab_Sample_ID"],["qpcrTarget","qPCR_Target"],["qpcrCt","qPCR_Ct"],["qpcrResult","qPCR_Result"],
-    ["labDate","Lab_Date"],["analyst","Analyst"],["labNotes","Lab_Notes"],["id","Record_UUID"]
+    ["srNo","Sr. No."],["collectionDate","Date of collection"],["collectionMonth","Month of collection"],["collectionYear","Year of collection"],
+    ["monthYear1","Month-Year1"],["monthYear","Month-Year"],["sampleId","Sample name"],
+    ["location","Location"],["habitat","Location habitat"],["sampleType","Sample type"],["coordsStr","Location co-ordinates"],
+    ["numSamples","No_of_samples"],["collector","Collector"],["notes","Notes"],["savedAt","Saved_At"],["id","Record_UUID"]
   ];
   function csvCell(v){ if(v===null||v===undefined) return ""; v=String(v); return /[",\n]/.test(v)?'"'+v.replace(/"/g,'""')+'"':v; }
   async function exportCsv(){
     if(!records.length){ toast("Nothing to export",true); return; }
     var head=COLS.map(function(c){return c[1];}).join(",");
-    var rows=records.map(function(r){ return COLS.map(function(c){return csvCell(r[c[0]]);}).join(","); });
-    download("MTB_samples_"+todayStamp()+".csv","text/csv;charset=utf-8",[head].concat(rows).join("\n")); toast("CSV exported ("+records.length+" rows)");
+    var sorted=records.slice().sort(function(a,b){ return (a.collectionDate||"").localeCompare(b.collectionDate||"") || (a.savedAt||"").localeCompare(b.savedAt||""); });
+    var rows=sorted.map(function(r,i){
+      var rr=Object.assign({},r,{srNo:i+1,coordsStr:r.lat.toFixed(6)+", "+r.lng.toFixed(6)});
+      return COLS.map(function(c){return csvCell(rr[c[0]]);}).join(",");
+    });
+    download("AIV_samples_"+todayStamp()+".csv","text/csv;charset=utf-8",[head].concat(rows).join("\n")); toast("CSV exported ("+records.length+" rows)");
     config.lastCsvAt=new Date().toISOString(); config.lastCsvCount=records.length;
     await setJSON("mtb-config",config); renderCsvReminder();
   }
@@ -712,7 +661,7 @@
       card.style.display="block";
     } else card.style.display="none";
   }
-  $("btnJson").addEventListener("click",function(){ if(!records.length){ toast("Nothing to back up",true); return; } download("MTB_backup_"+todayStamp()+".json","application/json",JSON.stringify(records,null,2)); toast("Backup saved"); });
+  $("btnJson").addEventListener("click",function(){ if(!records.length){ toast("Nothing to back up",true); return; } download("AIV_backup_"+todayStamp()+".json","application/json",JSON.stringify(records,null,2)); toast("Backup saved"); });
   $("importFile").addEventListener("change",function(e){
     var f=e.target.files[0]; if(!f) return; var rd=new FileReader();
     rd.onload=async function(){ try{ var data=JSON.parse(rd.result); if(!Array.isArray(data)) throw 0;
@@ -733,20 +682,18 @@
   function apiBase(){ return (config.url||"").replace(/\/+$/,"")+"/rest/v1/samples"; }
   function headers(extra){ return Object.assign({apikey:config.key,Authorization:"Bearer "+config.key,"Content-Type":"application/json"}, extra||{}); }
   var MAP=[
-    ["id","id"],["sampleId","sample_id"],["savedAt","saved_at"],["updatedAt","updated_at"],["fixTime","fix_time"],
-    ["siteName","site_name"],["siteType","site_type"],["zone","zone_ward"],["population","catchment_population"],
-    ["lat","latitude"],["lng","longitude"],["gpsAccuracy","gps_accuracy_m"],["altitude","altitude_m"],
+    ["id","id"],["sampleId","sample_id"],["savedAt","saved_at"],["updatedAt","updated_at"],
+    ["collectionDate","collection_date"],["collectionMonth","collection_month"],["collectionYear","collection_year"],
+    ["monthYear1","month_year1"],["monthYear","month_year"],
+    ["location","location"],["habitat","location_habitat"],["lat","latitude"],["lng","longitude"],
+    ["sampleType","sample_type"],["numSamples","num_samples"],
     ["airTemp","air_temp_c"],["humidity","humidity_pct"],["precip","precip_mm"],["windSpeed","wind_kmh"],
-    ["flowSpeed","flow_speed_ms"],["flowDepth","flow_depth_cm"],["channelWidth","channel_width_cm"],["flowRateLps","flow_rate_lps"],
-    ["waterTemp","water_temp_c"],["pH","ph"],["turbidity","turbidity_ntu"],
-    ["method","method"],["volume","volume_ml"],["collector","collector"],["notes","notes"],
-    ["labSampleId","lab_sample_id"],["qpcrTarget","qpcr_target"],["qpcrCt","qpcr_ct"],["qpcrResult","qpcr_result"],
-    ["labDate","lab_date"],["analyst","analyst"],["labNotes","lab_notes"],["deviceId","device_id"]
+    ["collector","collector"],["notes","notes"],["deviceId","device_id"]
   ];
-  var NUMERIC={population:1,lat:1,lng:1,gpsAccuracy:1,altitude:1,airTemp:1,humidity:1,precip:1,windSpeed:1,flowSpeed:1,flowDepth:1,channelWidth:1,flowRateLps:1,waterTemp:1,pH:1,turbidity:1,volume:1,qpcrCt:1};
-  var DATEISH={savedAt:1,updatedAt:1,fixTime:1,labDate:1};
+  var NUMERIC={lat:1,lng:1,airTemp:1,humidity:1,precip:1,windSpeed:1,numSamples:1,collectionYear:1};
+  var DATEISH={savedAt:1,updatedAt:1,collectionDate:1};
   function toRow(rec){ var o={}; MAP.forEach(function(m){ var v=rec[m[0]]; if(NUMERIC[m[0]]){ v=(v===""||v==null||isNaN(v))?null:Number(v); } else if(DATEISH[m[0]]){ v=v?v:null; } else { v=(v===""||v==null)?null:v; } o[m[1]]=v; }); return o; }
-  function fromRow(row){ var rec={}; MAP.forEach(function(m){ rec[m[0]]=row[m[1]]; }); if(rec.labDate&&rec.labDate.length>10) rec.labDate=rec.labDate.slice(0,10); rec.syncedAt=new Date().toISOString(); return rec; }
+  function fromRow(row){ var rec={}; MAP.forEach(function(m){ rec[m[0]]=row[m[1]]; }); rec.syncedAt=new Date().toISOString(); return rec; }
 
   async function syncPush(list){
     if(!config.url||!config.key){ return false; }
@@ -820,7 +767,7 @@
     var incoming=parseHashSetup(); if(!incoming) return;
     history.replaceState(null,'',location.href.split('#')[0]);
     if(config.url===incoming.url && config.key===incoming.key){ switchView('sync'); return; }
-    if(confirm('Connect this device to the team MTB Survey database?')){
+    if(confirm('Connect this device to the team AIV Surveillance database?')){
       config.url=incoming.url; config.key=incoming.key; await setJSON('mtb-config',config);
       $("cfgUrl").value=config.url; $("cfgKey").value=config.key; setDot("syncDot","ok");
       renderSync(); switchView('sync'); toast('Connected to team database');
@@ -830,7 +777,7 @@
   $("btnShare").addEventListener("click",async function(){
     if(!config.url||!config.key){ toast("Set up sync first",true); return; }
     var link=setupLink(); $("shareLink").value=link;
-    if(navigator.share){ try{ await navigator.share({title:'MTB Survey app setup',text:'Open this to set up the MTB Wastewater Survey app on your phone:',url:link}); return; }catch(e){ if(e&&e.name==='AbortError') return; } }
+    if(navigator.share){ try{ await navigator.share({title:'AIV Survey app setup',text:'Open this to set up the AIV Surveillance app on your phone:',url:link}); return; }catch(e){ if(e&&e.name==='AbortError') return; } }
     try{ await navigator.clipboard.writeText(link); toast("Setup link copied — paste into WhatsApp"); }catch(e){ $("shareLink").focus(); $("shareLink").select(); toast("Long-press the link to copy"); }
   });
 
@@ -847,7 +794,7 @@
   $("qrPrint").addEventListener("click",function(){
     if(typeof qrcode==="undefined"){ toast("QR library not loaded",true); return; }
     try{
-      $("printArea").innerHTML='<div class="poster"><div class="ptitle">MTB Wastewater Surveillance</div><div class="psub">Field team · app setup</div><div class="pqr">'+makeQR(setupLink())+'</div><ol class="psteps"><li>Open your phone <b>Camera</b> and point it at this code.</li><li>Tap the link that appears, then tap <b>Connect</b>.</li><li>Tap <b>Add to Home Screen</b> to install the app.</li><li>Open the app → <b>Sync</b> tab → type <b>your name</b>.</li></ol><div class="pfoot">Contains a database key — keep this sheet within the project team.</div></div>';
+      $("printArea").innerHTML='<div class="poster"><div class="ptitle">AIV Environmental Surveillance</div><div class="psub">Field team · app setup</div><div class="pqr">'+makeQR(setupLink())+'</div><ol class="psteps"><li>Open your phone <b>Camera</b> and point it at this code.</li><li>Tap the link that appears, then tap <b>Connect</b>.</li><li>Tap <b>Add to Home Screen</b> to install the app.</li><li>Open the app → <b>Sync</b> tab → type <b>your name</b>.</li></ol><div class="pfoot">Contains a database key — keep this sheet within the project team.</div></div>';
       setTimeout(function(){ window.print(); }, 80);
     }catch(e){ toast("Print failed",true); }
   });
@@ -863,27 +810,30 @@
 
   /* ---------- map view ---------- */
   var mapObj=null, mapLayer=null;
+  var HABITAT_COLOR={"Sewage":"#8a5a2b","Lake":"#2266dd","Zoo":"#d9822b","LBM":"#b23a3a","Poultry":"#c0392b","WLS":"#0ea5b7"};
   function renderMap(){
     if(typeof L==="undefined"){ $("mapEl").innerHTML='<div class="empty"><p><b>Map unavailable offline</b></p><p>Connect to the internet once to load the map, then it may work from cache next time.</p></div>'; return; }
-    var withFix=records.filter(function(r){return r.lat!=null&&r.lng!=null;});
     if(!mapObj){
       mapObj=L.map("mapEl",{scrollWheelZoom:true});
       L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",{
         maxZoom:19, attribution:'&copy; OpenStreetMap contributors'
       }).addTo(mapObj);
-      mapObj.setView([17.3850,78.4867],11);
+      mapObj.setView([17.4200,78.5000],10);
     }
     if(mapLayer) mapObj.removeLayer(mapLayer);
     mapLayer=L.layerGroup().addTo(mapObj);
     var pts=[];
-    withFix.forEach(function(r){
-      var color = r.qpcrResult==="Positive" ? "#c0392b" : (r.qpcrResult==="Negative" ? "#17a674" : "#8a8f87");
-      var m=L.circleMarker([r.lat,r.lng],{radius:8,color:color,fillColor:color,fillOpacity:0.85,weight:2});
-      m.bindPopup('<b>'+esc(r.sampleId)+'</b><br>'+esc(r.siteName||'—')+' · '+esc(r.siteType||'')+'<br>'+(r.qpcrResult||'Pending')+(r.qpcrCt!=null?' · Ct '+r.qpcrCt:''));
+    SITES.forEach(function(s){
+      var samples=records.filter(function(r){return r.location===s.name;});
+      var count=samples.reduce(function(sum,r){return sum+(Number(r.numSamples)||1);},0);
+      var color=HABITAT_COLOR[s.habitat]||"#5c6f74";
+      var m=L.circleMarker([s.lat,s.lng],{radius:count>0?10:7,color:color,fillColor:color,fillOpacity:count>0?0.9:0.35,weight:2});
+      var last=samples.length?samples.reduce(function(a,b){return (a.collectionDate>b.collectionDate)?a:b;}).collectionDate:null;
+      m.bindPopup('<b>'+esc(s.name)+'</b><br>'+esc(s.habitat)+'<br>'+count+' sample(s) logged'+(last?'<br>Last: '+last:''));
       m.addTo(mapLayer);
-      pts.push([r.lat,r.lng]);
+      pts.push([s.lat,s.lng]);
     });
-    if(pts.length) mapObj.fitBounds(pts,{padding:[30,30],maxZoom:15});
+    if(pts.length) mapObj.fitBounds(pts,{padding:[30,30],maxZoom:13});
     setTimeout(function(){ mapObj.invalidateSize(); },80);
   }
   var meMarker=null, meWatch=null;
@@ -912,6 +862,7 @@
       $("nav"+name.charAt(0).toUpperCase()+name.slice(1)).classList.toggle("active",name===v);
     });
     if(v==="records") renderRecords(); if(v==="export"){ renderStats(); renderCsvReminder(); } if(v==="sync") renderSync(); if(v==="map") renderMap();
+    if(v==="collect" && !autoTried && $("siteSelect").value===""){ autoTried=true; detectSite(true); }
     window.scrollTo(0,0);
   }
   Array.prototype.forEach.call(document.querySelectorAll("nav button"),function(b){ b.addEventListener("click",function(){ switchView(this.getAttribute("data-view")); }); });
