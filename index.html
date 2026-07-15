@@ -123,6 +123,10 @@
     #printArea .psteps{max-width:84mm;margin:14px auto 0;text-align:left;font-size:13px;line-height:1.7}
     #printArea .pfoot{margin-top:18px;font-size:10px;color:#5c6f74}
   }
+  .leaflet-popup-content-wrapper{border-radius:10px}
+  .leaflet-popup-content{font-family:var(--ui);font-size:13px;line-height:1.5;color:var(--ink)}
+  .site-label{background:var(--petrol);color:#fff;border:0;border-radius:6px;font-size:11px;font-weight:600;padding:2px 7px;box-shadow:0 1px 4px rgba(0,0,0,.25)}
+  .site-label::before{border-top-color:var(--petrol)}
 </style>
 </head>
 <body>
@@ -258,7 +262,7 @@
 
   <!-- ============ MAP ============ -->
   <section class="view" id="v-map">
-    <p class="hint" style="margin:0 0 10px">Your 11 fixed sites, colored by habitat type. Marker size shows whether samples have been logged there. Needs an internet connection to load the map tiles.</p>
+    <p class="hint" style="margin:0 0 10px">Your 11 fixed sites, colored by habitat type and labelled on the map. Tap a marker for details and a link to navigate there in Google Maps. Needs an internet connection to load the map tiles.</p>
     <div class="btn-row"><button class="btn ghost" id="btnLocateMe">📍 My current location</button></div>
     <div id="mapEl" style="width:100%;height:56vh;border-radius:12px;overflow:hidden;border:1px solid var(--line)"></div>
   </section>
@@ -829,7 +833,9 @@
       var color=HABITAT_COLOR[s.habitat]||"#5c6f74";
       var m=L.circleMarker([s.lat,s.lng],{radius:count>0?10:7,color:color,fillColor:color,fillOpacity:count>0?0.9:0.35,weight:2});
       var last=samples.length?samples.reduce(function(a,b){return (a.collectionDate>b.collectionDate)?a:b;}).collectionDate:null;
-      m.bindPopup('<b>'+esc(s.name)+'</b><br>'+esc(s.habitat)+'<br>'+count+' sample(s) logged'+(last?'<br>Last: '+last:''));
+      var navUrl="https://www.google.com/maps/dir/?api=1&destination="+s.lat+","+s.lng+"&travelmode=driving";
+      m.bindPopup('<b>'+esc(s.name)+'</b><br>'+esc(s.habitat)+'<br>'+count+' sample(s) logged'+(last?'<br>Last: '+last:'')+'<br><a href="'+navUrl+'" target="_blank" rel="noopener" style="color:#1d4e89;font-weight:700">🧭 Navigate here (Google Maps)</a>');
+      m.bindTooltip(s.name,{permanent:true,direction:"top",offset:[0,-8],className:"site-label"});
       m.addTo(mapLayer);
       pts.push([s.lat,s.lng]);
     });
